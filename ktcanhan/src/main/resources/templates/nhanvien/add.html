@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm nhan vien</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Thêm nhan vien</h1>
+    <form th:action="@{/nhanVien/add}" th:object="${nhanVien}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="name">Tên</label>
+            <input class="form-control" type="text" th:field="*{name}" id="name">
+            <!--            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors = "*{title}"></span>-->
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="gender">Giới Tính</label>
+            <input class="form-control" type="text" th:field="*{gender}" id="gender">
+            <!--            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors = "*{title}"></span>-->
+        </div>
+
+        <div class="col-6 mb-3">
+            <label class="form-label" for="image">Ảnh</label>
+            <input class="form-control" type="text" th:field="*{image}" id="image">
+            <!--            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors = "*{title}"></span>-->
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="place">Nơi Ở</label>
+            <input class="form-control" type="text" th:field="*{place}" id="place">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="price">Lương</label>
+            <input class="form-control" type="text" th:field="*{price}" id="price">
+            <!--            <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors = "*{price}"></span>-->
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phongBan">Phòng Ban</label>
+            <select class="form-control" id="phongBan" name="phongBan.id">
+                <option value="">Phongban</option>
+                <option th:each="phongBan : ${phongBan}" th:value="${phongBan.id}"
+                        th:text="${phongBan.name}"></option>
+            </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('phongBan')}" th:errors="*{phongBan}"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+    <br>
+    <a th:href="@{/nhanVien}">Quay Lại</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

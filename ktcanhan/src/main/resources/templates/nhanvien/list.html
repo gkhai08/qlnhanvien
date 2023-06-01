@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head th:replace="~{layout :: link-css}">
+    <title></title></head>
+<body>
+<block th:replace="~{layout :: header}"></block>
+<div class="container">
+    <h1 th:text=${title}></h1>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Giới Tính</th>
+            <th>ảnh</th>
+            <th>Nơi ở</th>
+            <th>Lương</th>
+            <th>Phòng ban</th>
+            <th>Chỉnh sửa</th>
+        </tr>
+        <tr th:each="nhanVien : ${nhanVien}">
+            <td th:text="${nhanVien.id}"></td>
+            <td th:text="${nhanVien.name}"></td>
+            <td th:text="${nhanVien.gender}"></td>
+            <td th:text="${nhanVien.image}"></td>
+            <td th:text="${nhanVien.place}"></td>
+            <td th:text="${nhanVien.price}"></td>
+            <td th:text="${nhanVien.phongBan.name}"></td>
+            <td>
+                <a th:href="@{/nhanVien/edit/{id}(id=${nhanVien.id})}">Edit</a> |
+                <a th:href="@{/nhanVien/delete/{id}(id=${nhanVien.id})}"
+                   onclick="return confirm('Bạn muốn xoá nhan vien?')">Delete</a>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<block th:replace="~{layout :: footer}"></block>
+</body>
+</html>
